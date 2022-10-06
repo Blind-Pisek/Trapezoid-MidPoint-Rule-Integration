@@ -8,7 +8,7 @@ package pl.polsl.view;
  *
  * @author Karol Pisarski
  */
-public class View {
+public final class View {
     
     public void seyHelloToUser(){
         System.out.println("Welcome to programme calculating Intergrals");
@@ -22,7 +22,9 @@ public class View {
         System.out.println("Tell me the upper bound of integral: ");
     }
     
-    
+    public void askForPrecision(){
+        System.out.println("Tell me the preciosion of calculating integral: ");
+    }
     
     
 }

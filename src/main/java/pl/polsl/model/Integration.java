@@ -10,12 +10,13 @@ import pl.polsl.model.Function;
  *
  * @author Karol Pisarski
  */
-public class Integration {
+public final class Integration {
     
     double lower_bound = 0;
     double upper_bound = 0;
+    int precision = 0;
     
-    public Integration(float x){
+    public Integration(){
        
     }
     
@@ -33,6 +34,14 @@ public class Integration {
     
     public double getUpperBound(){
         return upper_bound;
+    }
+    
+    public void setPrecision(int num){
+        precision = num;
+    }
+    
+    public int getPrecision(){
+        return precision;
     }
    
 }

@@ -11,11 +11,12 @@ import pl.polsl.controller.Controller;
  */
 public class Calkowanie_metoda_trapezow_i_prostokatow {
     
-    
-
+   
     public static void main(String[] args) {
-       Controller controller;
-       controller.getData();
+        
+       Controller controller = new Controller();
+       controller.getBounderies();
+       controller.getPrecision();
         
     }
 }

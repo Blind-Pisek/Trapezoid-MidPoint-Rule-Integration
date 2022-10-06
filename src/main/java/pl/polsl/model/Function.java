@@ -4,11 +4,23 @@
  */
 package pl.polsl.model;
 
+import java.lang.Math;
+
 /**
  *
  * @author Karol Pisarski
  */
 public interface Function {
-    void functionToCalculate(double x); 
-    
+    public double functionToCalculate(double x); 
 }
+
+
+public final class Sinusoidal implements Function {
+    
+    @Override
+    public double functionToCalculate(double x){
+        return Math.sin(x);
+    }
+}
+
+

@@ -12,18 +12,22 @@ import pl.polsl.model.Integration;
 /**
  *
  * @author Karol Pisarski
+ * 
  */
 public class Controller {
     
     Scanner scanner;
+
+        String input;   // console input
+
     
-    View view;
-    Integration integration;
+    View view = new View();
+    Integration integration = new Integration();
     
     
-    public void getData(){
+    
+    public void getBounderies(){
         
-        String input;
         
         scanner = new Scanner(System.in);
         
@@ -31,9 +35,22 @@ public class Controller {
         
         view.askLowerBound();
         input = scanner.next();
-        integration.setLowerBound();
-        view.askUpperBound();
+        integration.setLowerBound(Double.parseDouble(input));
         
+        view.askUpperBound();
+        input = scanner.next();
+        integration.setUpperBound(Double.parseDouble(input));
+        
+        
+       
     }
     
+    public void getPrecision(){
+        view.askForPrecision();
+        input =scanner.next();
+        integration.setPrecision(Integer.parseInt(input)); 
+    }
+    
+    
+   
 }
