@@ -16,9 +16,9 @@ import pl.polsl.model.Integration;
  */
 public class Controller {
     
-    Scanner scanner;
+    Scanner scanner;    // console scanner
 
-        String input;   // console input
+    String input;   // console input
 
     
     View view = new View();
@@ -47,8 +47,19 @@ public class Controller {
     
     public void getPrecision(){
         view.askForPrecision();
-        input =scanner.next();
+        input = scanner.next();
         integration.setPrecision(Integer.parseInt(input)); 
+    
+        
+        System.out.println("Result: ");
+        double resaul= integration.CalculateIntegral(x -> {
+         return Math.pow(x,2);  });
+        
+        
+        
+        System.out.println( resaul);
+    
+    
     }
     
     

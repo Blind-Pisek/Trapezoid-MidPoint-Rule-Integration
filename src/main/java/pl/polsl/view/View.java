@@ -11,7 +11,7 @@ package pl.polsl.view;
 public final class View {
     
     public void seyHelloToUser(){
-        System.out.println("Welcome to programme calculating Intergrals");
+        System.out.println("Welcome to programme calculating Intergrals :)");
     }
     
     public void askLowerBound(){
@@ -26,5 +26,16 @@ public final class View {
         System.out.println("Tell me the preciosion of calculating integral: ");
     }
     
+    
+    public void PrintFunction(){
+        
+        System.out.println(" Calculated Function: ");
+        
+    }
+    
+    public void PrintResult()
+    {
+        System.out.println("Result of calculation: ");
+    }
     
 }
