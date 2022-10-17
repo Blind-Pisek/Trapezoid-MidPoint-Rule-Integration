@@ -10,11 +10,14 @@ import pl.polsl.model.Function;
  *
  * @author Karol Pisarski
  */
-public final class Integration {
+public class Integration 
+{
     
     double lower_bound = 0;
     double upper_bound = 0;
     double precision = 0;
+    
+    int modifier = 1;   // changes the sign
     
     /**
      *
@@ -41,23 +44,23 @@ public final class Integration {
     public void setPrecision( double num ){ precision = num; }
     
     public double getPrecision() { return precision; }
-   
     
-    public double CalculateIntegral(Function function)
+    public void CheckSign() 
     {
-        double modifier = 1;    // changes the sign 
-        double area = 0;    // area of calculated integral
-        
-        if ( lower_bound > upper_bound ) 
+         if ( lower_bound > upper_bound ) 
         {
             double temp_lower_bound = lower_bound;  // temporary lower boundery
             lower_bound = upper_bound;
             upper_bound = temp_lower_bound;
             modifier = -1;  // bounderies are reversed, sign needs to be changed
         }
-        
-        //precision /= 10000;
-        
+    }   // CheckSign
+   
+    
+    public double CalculateIntegral(Function function)
+    {
+        double area = 0;    // area of calculated integral
+
         double diff_from_lower_bound = 0;
         
         for ( double i = lower_bound + precision; 

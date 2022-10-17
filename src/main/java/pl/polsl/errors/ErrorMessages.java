@@ -19,4 +19,6 @@ public class ErrorMessages
 
     public static final String ERROR_INPUT_BOUNDERY = "Introduced wrong boundery!!!";
 
+    
+    
 }

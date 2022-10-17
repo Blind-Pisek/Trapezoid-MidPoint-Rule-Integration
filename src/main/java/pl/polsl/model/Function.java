@@ -17,5 +17,5 @@ public interface Function
      * @param x 
      * @return 
      */
-    public double functionToCalculate( double x ); 
+    public double functionToCalculate( double x );
 }

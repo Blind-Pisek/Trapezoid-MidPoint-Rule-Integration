@@ -7,7 +7,9 @@ package pl.polsl.controller;
 import java.util.Scanner;
 
 import pl.polsl.view.*; // imports all of the classes
-import pl.polsl.model.Integration;
+import pl.polsl.model.*;
+
+
 import pl.polsl.errors.ErrorMessages;
 
 
@@ -52,8 +54,7 @@ public class Controller
                 System.exit(0);
             }
         }
-        
-    }
+    }   // CheckParameterPrecision
     
     // DONE
     public void WelcomeUser()
@@ -76,7 +77,7 @@ public class Controller
         view.PrintError( error_messages.ERROR_INPUT_METHOD );
         System.exit(0);
        }
-    }
+    }   // GetMethod
     
     // TODO POLIMORPHISMs
     boolean CheckMethod( Integer meth )
@@ -102,7 +103,7 @@ public class Controller
             
             
         return state;     
-    }
+    }   // CheckMethod
             
     // DONE
     public void GetBounderies()
@@ -122,7 +123,7 @@ public class Controller
             view.PrintError( error_messages.ERROR_INPUT_BOUNDERY );
             System.exit(0);
         }
-    }
+    }   // GetBounderies
     
     
     
@@ -134,21 +135,28 @@ public class Controller
     
         // There define function to calculate integral
         // The best way is to use lambda
-        double result = integration.CalculateIntegral( x -> {
-                                                      return Math.pow(x,2); } );
+        //double result = integration.CalculateIntegral( x -> {
+          //                                            return Math.pow(x,2); } );
         
-        view.PrintResult(result);
+        
        
+        Trapezoidal trap = new Trapezoidal( integration );
+        
+     double result = trap.CalculateIntegral( x -> {
+                                                      return Math.pow(x,2); } );
     
-    
+     view.PrintResult(result);
+                                                     
     }
+    
+    
     
     
     boolean IsStringDouble( String str )
     {
         return str.matches("\\d+(\\.\\d+)?");  
-    }
+    }   // IsStringDouble
     
 
     
-}
+}   // class Controler
