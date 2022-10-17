@@ -11,6 +11,11 @@ package pl.polsl.model;
  */
 public interface Function 
 {
-    
-    public double functionToCalculate(double x); 
+
+    /**
+     *
+     * @param x 
+     * @return 
+     */
+    public double functionToCalculate( double x ); 
 }

@@ -16,10 +16,6 @@ public final class Integration {
     double upper_bound = 0;
     double precision = 0;
     
-    public Integration(){
-       
-    }
-    
     /**
      *
      * @param num
@@ -60,7 +56,7 @@ public final class Integration {
             modifier = -1;  // bounderies are reversed, sign needs to be changed
         }
         
-        precision /= 10000;
+        //precision /= 10000;
         
         double diff_from_lower_bound = 0;
         

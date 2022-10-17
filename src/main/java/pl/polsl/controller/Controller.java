@@ -6,8 +6,9 @@ package pl.polsl.controller;
 
 import java.util.Scanner;
 
-import pl.polsl.view.*; // imports all of classes
+import pl.polsl.view.*; // imports all of the classes
 import pl.polsl.model.Integration;
+import pl.polsl.errors.ErrorMessages;
 
 
 
@@ -16,49 +17,119 @@ import pl.polsl.model.Integration;
  * @author Karol Pisarski
  * 
  */
-public class Controller {
+public class Controller 
+{
+    ErrorMessages error_messages = new ErrorMessages();
     
-    Scanner scanner;    // console scanner
+    Scanner scanner = new Scanner(System.in);    // console scanner
 
     String input;   // console input
 
     
     View view = new View(); // User's GUI
+    
     Integration integration = new Integration();    // Class of calculating integration
     
+    int method = 0; // Flag which determines calculating method
     
-    
-    public void GetBounderies()
+
+    //  TODO 
+    public void CheckParameterPrecision( String prec )
     {
-        scanner = new Scanner(System.in);
+        if( !IsStringDouble( prec ) )
+        { 
+            view.PrintError( error_messages.EROOR_PARAMETER );
+         
+            try
+            {
+                view.AskForPrecision();
+                input = scanner.next();
+                integration.setPrecision( Double.parseDouble( input ) );  
+            }
+            catch( NumberFormatException ex )
+            {
+                view.PrintError( error_messages.ERROR_INPUT_PRECISION );
+                System.exit(0);
+            }
+        }
         
-        view.seyHelloToUser(); 
-        
-        view.askLowerBound();
-        input = scanner.next();
-        integration.setLowerBound(Double.parseDouble(input));
-        
-        view.askUpperBound();
-        input = scanner.next();
-        integration.setUpperBound(Double.parseDouble(input));
+    }
+    
+    // DONE
+    public void WelcomeUser()
+    {
+        view.SeyHelloToUser(); 
     }
     
     
-    public void GetPrecision( String[] args )
+    // DONE
+    public void GetMethod()
+    {  
+       try
+       {
+        view.AskForMethod();
+        input = scanner.next();
+        method = Integer.parseInt( input );
+       }
+       catch( NumberFormatException ex )
+       {
+        view.PrintError( error_messages.ERROR_INPUT_METHOD );
+        System.exit(0);
+       }
+    }
+    
+    // TODO POLIMORPHISMs
+    boolean CheckMethod( Integer meth )
     {
-  
+        boolean state = false;
+        
+        switch( meth )
+        {
+            case 0: 
+                method = meth;
+                state = true;
+                break;
+            case 1:
+                method = meth;
+                state = true;
+                break;
+            default:
+                // Write there sth
+                
+                state = false;
+                break;
+        }
+            
+            
+        return state;     
+    }
+            
+    // DONE
+    public void GetBounderies()
+    {
         try
         {
-              double prec = Double.parseDouble(args[0]);
-              System.out.println("Read precision prec: " + prec );
-              integration.setPrecision(prec);
+            view.AskLowerBound();
+            input = scanner.next();
+            integration.setLowerBound( Double.parseDouble( input ) );
 
+            view.AskUpperBound();
+            input = scanner.next();
+            integration.setUpperBound( Double.parseDouble( input ) );
         }
         catch( NumberFormatException ex )
         {
-            view.PrintExeptionError( args[0] );
+            view.PrintError( error_messages.ERROR_INPUT_BOUNDERY );
+            System.exit(0);
         }
-
+    }
+    
+    
+    
+    public void GetPrecision ( String[] args ) throws NumberFormatException
+    {
+  
+ 
          
     
         // There define function to calculate integral
@@ -73,7 +144,10 @@ public class Controller {
     }
     
     
-    
+    boolean IsStringDouble( String str )
+    {
+        return str.matches("\\d+(\\.\\d+)?");  
+    }
     
 
     
