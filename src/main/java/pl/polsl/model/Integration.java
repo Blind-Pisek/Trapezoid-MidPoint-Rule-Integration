@@ -20,17 +20,29 @@ public final class Integration {
        
     }
     
+    /**
+     *
+     * @param num
+     */
     public void setLowerBound( double num ) { lower_bound = num; }
     
+    /**
+     *
+     * @return
+     */
     public double getLowerBound() { return lower_bound; }
     
     
     public void setUpperBound( double num ) { upper_bound = num; }
     
+    /**
+     *
+     * @return
+     */
     public double getUpperBound() { return upper_bound; }
     
     
-    public void setPrecision( int num ){ precision = num; }
+    public void setPrecision( double num ){ precision = num; }
     
     public double getPrecision() { return precision; }
    

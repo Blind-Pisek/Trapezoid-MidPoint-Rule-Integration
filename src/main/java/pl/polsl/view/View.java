@@ -27,15 +27,15 @@ public final class View {
     }
     
     
-    public void PrintFunction(){
-        
-        System.out.println(" Calculated Function: ");
-        
+    public void PrintResult( double res )
+    {
+        System.out.println("Result of calculation: " + res );
     }
     
-    public void PrintResult()
+    
+    public void PrintExeptionError( String val ) 
     {
-        System.out.println("Result of calculation: ");
+        System.out.println("Error : " + val );
     }
     
 }

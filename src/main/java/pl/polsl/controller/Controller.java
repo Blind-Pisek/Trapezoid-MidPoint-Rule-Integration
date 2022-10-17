@@ -9,6 +9,8 @@ import java.util.Scanner;
 import pl.polsl.view.*; // imports all of classes
 import pl.polsl.model.Integration;
 
+
+
 /**
  *
  * @author Karol Pisarski
@@ -21,14 +23,13 @@ public class Controller {
     String input;   // console input
 
     
-    View view = new View();
-    Integration integration = new Integration();
+    View view = new View(); // User's GUI
+    Integration integration = new Integration();    // Class of calculating integration
     
     
     
-    public void getBounderies(){
-        
-        
+    public void GetBounderies()
+    {
         scanner = new Scanner(System.in);
         
         view.seyHelloToUser(); 
@@ -40,28 +41,40 @@ public class Controller {
         view.askUpperBound();
         input = scanner.next();
         integration.setUpperBound(Double.parseDouble(input));
+    }
+    
+    
+    public void GetPrecision( String[] args )
+    {
+  
+        try
+        {
+              double prec = Double.parseDouble(args[0]);
+              System.out.println("Read precision prec: " + prec );
+              integration.setPrecision(prec);
+
+        }
+        catch( NumberFormatException ex )
+        {
+            view.PrintExeptionError( args[0] );
+        }
+
+         
+    
+        // There define function to calculate integral
+        // The best way is to use lambda
+        double result = integration.CalculateIntegral( x -> {
+                                                      return Math.pow(x,2); } );
         
-        
+        view.PrintResult(result);
        
-    }
-    
-    public void getPrecision(){
-        view.askForPrecision();
-        input = scanner.next();
-        integration.setPrecision(Integer.parseInt(input)); 
-    
-        
-        System.out.println("Result: ");
-        double resaul= integration.CalculateIntegral(x -> {
-         return Math.pow(x,2);  });
-        
-        
-        
-        System.out.println( resaul);
     
     
     }
     
     
-   
+    
+    
+
+    
 }

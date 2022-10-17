@@ -16,7 +16,8 @@ public class Calkowanie_metoda_trapezow_i_prostokatow {
         
        Controller controller = new Controller();
        controller.getBounderies();
-       controller.getPrecision();
+       
+       controller.GetPrecision(args);
         
     }
 }
