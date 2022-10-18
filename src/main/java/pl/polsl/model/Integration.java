@@ -4,7 +4,7 @@
  */
 package pl.polsl.model;
 
-import pl.polsl.model.Function;
+import pl.polsl.errors.ErrorMessages;
 
 /**
  *
@@ -12,16 +12,13 @@ import pl.polsl.model.Function;
  */
 public class Integration 
 {
-    
     double lower_bound = 0;
     double upper_bound = 0;
     double precision = 0;
-    
-    int modifier = 1;   // changes the sign
-    
-    /**
+
+    /** Setter of lower boundery
      *
-     * @param num
+     * @param num 
      */
     public void setLowerBound( double num ) { lower_bound = num; }
     
@@ -31,7 +28,10 @@ public class Integration
      */
     public double getLowerBound() { return lower_bound; }
     
-    
+    /**
+     *
+     * @param num
+     */
     public void setUpperBound( double num ) { upper_bound = num; }
     
     /**
@@ -40,43 +40,48 @@ public class Integration
      */
     public double getUpperBound() { return upper_bound; }
     
-    
+    /**
+     *
+     * @param num
+     */
     public void setPrecision( double num ){ precision = num; }
     
+    /**
+     *
+     * @return
+     */
     public double getPrecision() { return precision; }
     
-    public void CheckSign() 
-    {
-         if ( lower_bound > upper_bound ) 
-        {
-            double temp_lower_bound = lower_bound;  // temporary lower boundery
-            lower_bound = upper_bound;
-            upper_bound = temp_lower_bound;
-            modifier = -1;  // bounderies are reversed, sign needs to be changed
-        }
-    }   // CheckSign
-   
-    
-    public double CalculateIntegral(Function function)
-    {
-        double area = 0;    // area of calculated integral
 
-        double diff_from_lower_bound = 0;
-        
-        for ( double i = lower_bound + precision; 
-              i < upper_bound; i += precision ) 
-        {
-            diff_from_lower_bound = i - lower_bound;
-            area += ( precision / 2 ) * 
-                     ( function.functionToCalculate( lower_bound + diff_from_lower_bound ) +
-                       function.functionToCalculate( lower_bound + diff_from_lower_bound - precision ) );
-            
-        }
-        
-        
-        
-        return area * modifier;
+    // to sth there
+
+    /**
+     *
+     * @param function
+     * @return
+     * @throws NotAbstractClassException
+     */
+    public double CalculateIntegral ( Function function ) throws NotAbstractClassException
+    {
+        throw new NotAbstractClassException(ErrorMessages.ERROR_NOT_ABSTRACT_CLASS );
+    }   // CalculateIntegral
+
+}
+
+/**
+ *
+ * @author pisek
+ */
+public class NotAbstractClassException extends Exception
+{
+
+    /**
+     *
+     * @param error_mess
+     */
+    public NotAbstractClassException( String error_mess )
+    {
+        super(error_mess);
     }
-    
-    
+
 }

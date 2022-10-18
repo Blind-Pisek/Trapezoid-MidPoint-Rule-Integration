@@ -39,17 +39,22 @@ public class Controller
 
     public void CheckCommandLineArguments( String[] args )
     {
+       
         if( args.length == 0 )
         {
            view.NullCommandLineArgument();
            System.exit(0);
         }
-    }
+    }   // CheckCommandLineArguments
     
-    //  TODO 
+    //  DONE 
     public void CheckParameterPrecision( String prec )
     {
-        if( !IsStringDouble( prec ) )
+        if( IsStringIntOrDouble( prec ) )
+        {
+            integration.setPrecision(Double.parseDouble( prec ) );
+        }
+        else
         { 
             view.PrintError( error_messages.EROOR_PARAMETER );
          
@@ -64,7 +69,7 @@ public class Controller
                 view.PrintError( error_messages.ERROR_INPUT_PRECISION );
                 System.exit(0);
             }
-        }
+        }     
     }   // CheckParameterPrecision
     
     // DONE
@@ -88,30 +93,37 @@ public class Controller
         view.PrintError( error_messages.ERROR_INPUT_METHOD );
         System.exit(0);
        }
+       
+       CheckMethod( method );
+       
     }   // GetMethod
     
     // TODO POLIMORPHISMs
     boolean CheckMethod( Integer meth )
     {
         boolean state = false;
-        
+        method = meth;
+
         switch( meth )
-        {
+        {  
             case 0: 
-                method = meth;
+                integration = new MidPoint( integration );
                 state = true;
                 break;
+
             case 1:
-                method = meth;
+
+                integration = new Trapezoidal( integration );
+
                 state = true;
                 break;
+
             default:
                 // Write there sth
-                
+
                 state = false;
                 break;
-        }
-            
+        } // switch
             
         return state;     
     }   // CheckMethod
@@ -141,35 +153,29 @@ public class Controller
     public void GetPrecision ( String[] args ) throws NumberFormatException
     {
   
- 
-         
-    
-        // There define function to calculate integral
-        // The best way is to use lambda
-        //double result = integration.CalculateIntegral( x -> {
-          //                                            return Math.pow(x,2); } );
         
-        
-       
-        Trapezoidal trap = new Trapezoidal( integration );
-        
-        MidPoint mid = new MidPoint( integration );
-        
-     double result = mid.CalculateIntegral( x -> {
-                                                      return Math.pow(x,2); } );
-    
-     view.PrintResult(result);
+        try
+        {
+          double result = integration.CalculateIntegral( x -> {
+                                                         return Math.pow(x,2); } );
+          view.PrintResult(result);
+        }
+        catch (NotAbstractClassException ex)
+        {
+           System.exit(0);
+        }
+
                                                      
     }
     
-    
-    
-    
-    boolean IsStringDouble( String str )
+
+    boolean IsStringIntOrDouble( String str )
     {
         return str.matches("\\d+(\\.\\d+)?");  
     }   // IsStringDouble
     
 
-    
+  
 }   // class Controler
+
+

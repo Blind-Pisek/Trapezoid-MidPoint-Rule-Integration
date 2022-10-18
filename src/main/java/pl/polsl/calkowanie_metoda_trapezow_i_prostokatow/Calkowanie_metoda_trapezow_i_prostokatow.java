@@ -1,6 +1,7 @@
 
 package pl.polsl.calkowanie_metoda_trapezow_i_prostokatow;
 
+import pl.polsl.controller.CommandLineException;
 import pl.polsl.controller.Controller;
 
 
@@ -11,6 +12,7 @@ import pl.polsl.controller.Controller;
  */
 public class Calkowanie_metoda_trapezow_i_prostokatow 
 {
+    static Controller controller;
     
     /**
      * 
@@ -19,20 +21,22 @@ public class Calkowanie_metoda_trapezow_i_prostokatow
      */
     public static void main( String[] args ) 
     {
-       Controller controller = new Controller();
+        controller = new Controller();
        
-      
-       controller.CheckCommandLineArguments( args );
-      
-       controller.CheckParameterPrecision( args[0] );
-      
-      
-       controller.WelcomeUser();
-       controller.GetMethod();
-       controller.GetBounderies();
-       controller.GetPrecision( args );
+        CheckParameters( args );
+       
+        controller.WelcomeUser();
+        controller.GetMethod();
+        controller.GetBounderies();
+        controller.GetPrecision( args );
         
        
+    }
+    
+    public static void CheckParameters( String[] args )
+    {     
+        controller.CheckCommandLineArguments( args );
+        controller.CheckParameterPrecision( args[0] );
     }
     
 }

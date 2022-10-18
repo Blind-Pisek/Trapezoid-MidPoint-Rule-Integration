@@ -19,6 +19,6 @@ public class ErrorMessages
 
     public static final String ERROR_INPUT_BOUNDERY = "Introduced wrong boundery!!!";
 
-    
-    
+    public static final String ERROR_NOT_ABSTRACT_CLASS = "Not abstract class implemented!!!";
+
 }

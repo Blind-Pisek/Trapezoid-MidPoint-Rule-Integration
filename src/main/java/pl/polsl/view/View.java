@@ -23,7 +23,7 @@ public final class View {
     
     public void AskForMethod()
     {
-        System.out.println("Type 0 to use X method or 1 to use Trapezoidal method: )");
+        System.out.println("Type 0 to use MidPoint method or 1 to use Trapezoidal method: )");
     }
     
     

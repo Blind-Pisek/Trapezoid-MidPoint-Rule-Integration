@@ -18,8 +18,8 @@ public final class Trapezoidal extends Integration
         this.setPrecision( itr.getPrecision() );
     }
    
-    // TODO Check if the methods are implemeted in good way
 
+    @Override
     public double CalculateIntegral( Function function )
     {
       double h = (upper_bound - lower_bound) / precision;   // step size
