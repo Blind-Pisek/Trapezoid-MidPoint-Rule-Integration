@@ -9,12 +9,7 @@ import java.util.Scanner;
 import pl.polsl.view.*; // imports all of the classes
 import pl.polsl.model.*;
 
-
 import pl.polsl.errors.ErrorMessages;
-
-
-//  TODO  add coments in javadoc
-
 
 /**
  *
@@ -94,7 +89,11 @@ public class Controller
         System.exit(0);
        }
        
-       CheckMethod( method );
+       if( !CheckMethod( method ) )
+       {
+           view.PrintError(input);
+           System.exit(0);
+       }
        
     }   // GetMethod
     
@@ -150,10 +149,8 @@ public class Controller
     
     
     
-    public void GetPrecision ( String[] args ) throws NumberFormatException
+    public void Calculate()
     {
-  
-        
         try
         {
           double result = integration.CalculateIntegral( x -> {

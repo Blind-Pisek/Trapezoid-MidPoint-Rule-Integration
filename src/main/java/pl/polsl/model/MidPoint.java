@@ -10,7 +10,10 @@ package pl.polsl.model;
  */
 public class MidPoint extends Integration 
 {
-
+    /** Constructor that copies private fields from base class
+     *
+     * @param itr Base class object
+     */
     public MidPoint( Integration itr )
     {
         this.setLowerBound( itr.getLowerBound() );
@@ -18,7 +21,11 @@ public class MidPoint extends Integration
         this.setPrecision( itr.getPrecision() );
     }
 
-
+    /** Calculates integral with specified method
+     *
+     * @param function Function to calculate integral from
+     * @return Result of integration
+     */
     @Override
     public double CalculateIntegral( Function function )
     {

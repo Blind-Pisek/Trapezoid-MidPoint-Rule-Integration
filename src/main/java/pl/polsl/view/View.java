@@ -8,7 +8,8 @@ package pl.polsl.view;
  *
  * @author Karol Pisarski
  */
-public final class View {
+public final class View 
+{
     
     public void NullCommandLineArgument()
     {

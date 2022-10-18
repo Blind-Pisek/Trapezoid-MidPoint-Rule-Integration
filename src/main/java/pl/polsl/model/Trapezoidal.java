@@ -11,6 +11,11 @@ package pl.polsl.model;
  */
 public final class Trapezoidal extends Integration 
 {
+
+    /** Constructor that copies private fields from base class
+     *
+     * @param itr Base class object
+     */
     public Trapezoidal( Integration itr )
     {
         this.setLowerBound( itr.getLowerBound() );
@@ -18,7 +23,11 @@ public final class Trapezoidal extends Integration
         this.setPrecision( itr.getPrecision() );
     }
    
-
+    /** Calculates integral with specified method
+     *
+     * @param function Function to calculate integral from
+     * @return Result of integration
+     */
     @Override
     public double CalculateIntegral( Function function )
     {
@@ -35,8 +44,7 @@ public final class Trapezoidal extends Integration
 
       return sum * h;
    }
-        
-        
+          
 }
     
     

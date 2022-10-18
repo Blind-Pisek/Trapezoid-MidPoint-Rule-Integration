@@ -4,14 +4,12 @@
  */
 package pl.polsl.model;
 
-
 /**
  *
  * @author Karol Pisarski
  */
 public interface Function 
 {
-
     /**
      *
      * @param x 

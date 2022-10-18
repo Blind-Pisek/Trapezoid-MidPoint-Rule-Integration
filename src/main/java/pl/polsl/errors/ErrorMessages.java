@@ -4,7 +4,8 @@
  */
 package pl.polsl.errors;
 
-/**
+/** Class contains Error messages used in programme
+ *  it is similar to #define used in C/C++
  *
  * @author Karol Pisarski
  */
