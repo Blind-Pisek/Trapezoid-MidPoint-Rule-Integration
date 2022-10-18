@@ -142,7 +142,9 @@ public class Controller
        
         Trapezoidal trap = new Trapezoidal( integration );
         
-     double result = trap.CalculateIntegral( x -> {
+        MidPoint mid = new MidPoint( integration );
+        
+     double result = mid.CalculateIntegral( x -> {
                                                       return Math.pow(x,2); } );
     
      view.PrintResult(result);
