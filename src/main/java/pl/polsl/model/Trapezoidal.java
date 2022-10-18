@@ -5,13 +5,14 @@
 package pl.polsl.model;
 
 
-/**
- *
+/** Class implements Trapezoidal method of calculating integral
+ * 
  * @author Karol Pisarski
+ * @verson 1.0
+ * 
  */
 public final class Trapezoidal extends Integration 
 {
-
     /** Constructor that copies private fields from base class
      *
      * @param itr Base class object
@@ -21,7 +22,7 @@ public final class Trapezoidal extends Integration
         this.setLowerBound( itr.getLowerBound() );
         this.setUpperBound( itr.getUpperBound() );
         this.setPrecision( itr.getPrecision() );
-    }
+    }   // Trapezoidal
    
     /** Calculates integral with specified method
      *
@@ -43,9 +44,9 @@ public final class Trapezoidal extends Integration
       }
 
       return sum * h;
-   }
+   }    // CalculateIntegral
           
-}
+}   // class Trapezoidal
     
     
 

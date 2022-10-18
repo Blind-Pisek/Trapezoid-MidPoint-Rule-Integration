@@ -4,9 +4,11 @@
  */
 package pl.polsl.model;
 
-/**
+/** Class implements Midpoint method of calculating integral
  *
  * @author Karol Pisarski
+ * @verson 1.0
+ * 
  */
 public class MidPoint extends Integration 
 {
@@ -19,7 +21,7 @@ public class MidPoint extends Integration
         this.setLowerBound( itr.getLowerBound() );
         this.setUpperBound( itr.getUpperBound() );
         this.setPrecision( itr.getPrecision() );
-    }
+    }   // MidPoint
 
     /** Calculates integral with specified method
      *
@@ -38,7 +40,6 @@ public class MidPoint extends Integration
        }
 
        return sum * h;
-    }
+    }   // CalculateIntegral
         
-}
-
+}   // class MidPoint

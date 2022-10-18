@@ -4,16 +4,18 @@
  */
 package pl.polsl.model;
 
-/**
+/** Interface which implements function passed thorough the programme
  *
  * @author Karol Pisarski
+ * @version 1.0
+ * 
  */
 public interface Function 
 {
-    /**
+    /** Virtual method calculating function parameter result
      *
-     * @param x 
-     * @return 
+     * @param x Function variable
+     * @return Result of function
      */
     public double functionToCalculate( double x );
 }

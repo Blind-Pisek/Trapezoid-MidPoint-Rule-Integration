@@ -6,9 +6,11 @@ package pl.polsl.model;
 
 import pl.polsl.errors.ErrorMessages;
 
-/**
- *
+/** Class implements base class of calculating integral
+ * 
  * @author Karol Pisarski
+ * @verson 1.0
+ * 
  */
 public class Integration 
 {
@@ -67,16 +69,18 @@ public class Integration
 
 }
 
-/**
+/** Class implemented to throw the exception of calculating
+ *  integral from base class
  *
  * @author Karol Pisarski
+ * @version 1.0
  */
 public class NotAbstractClassException extends Exception
 {
 
-    /** 
+    /** Default constructor that sends exception message 
      *
-     * @param error_mess 
+     * @param error_mess Message to send
      */
     public NotAbstractClassException( String error_mess )
     {

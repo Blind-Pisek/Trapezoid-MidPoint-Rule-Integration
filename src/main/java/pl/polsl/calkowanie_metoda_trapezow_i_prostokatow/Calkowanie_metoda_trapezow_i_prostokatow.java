@@ -16,6 +16,8 @@ public class Calkowanie_metoda_trapezow_i_prostokatow
 {
     static Controller controller;   // Programme logic
     
+    static boolean app_parapeters = false;
+    
     /** Main function
      * 
      * @param args programme arguments
@@ -24,24 +26,16 @@ public class Calkowanie_metoda_trapezow_i_prostokatow
     public static void main( String[] args ) 
     {
         controller = new Controller();
-       
-        CheckParameters( args );
-       
-        controller.WelcomeUser();
-        controller.GetMethod();
-        controller.GetBounderies();
-        controller.Calculate();
 
-    }
+        if( controller.CheckCommandLineArguments( args ) &&
+            controller.CheckParameterPrecision( args ) )
+        {
+            controller.WelcomeUser();
+            controller.GetMethod();
+            controller.GetBoundaries();
+            controller.Calculate();
+        }   // if
+  
+    }   // main
     
-    /** Function checks command line parameters
-     *
-     * @param args Command line parameters
-     */
-    public static void CheckParameters( String[] args )
-    {     
-        controller.CheckCommandLineArguments( args );
-        controller.CheckParameterPrecision( args[0] );
-    }
-    
-}
+}   // Calkowanie_metoda_trapezow_i_prostokatow

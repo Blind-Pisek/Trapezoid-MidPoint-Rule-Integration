@@ -11,19 +11,19 @@ import pl.polsl.model.*;
 
 import pl.polsl.errors.ErrorMessages;
 
-/**
+/** Design pattern MVC controller class
  *
  * @author Karol Pisarski
+ * @version 1.0
  * 
  */
 public class Controller 
 {
-    ErrorMessages error_messages = new ErrorMessages();
+    ErrorMessages error_messages = new ErrorMessages(); // Strings of errors
     
     Scanner scanner = new Scanner(System.in);    // console scanner
 
     String input;   // console input
-
     
     View view = new View(); // User's GUI
     
@@ -31,73 +31,112 @@ public class Controller
     
     int method = 0; // Flag which determines calculating method
     
-
-    public void CheckCommandLineArguments( String[] args )
+    /** Method checks if command line is not empty
+     *
+     * @param args Command Line
+     * @return If is not empty
+     */
+    public boolean CheckCommandLineArguments( String[] args )
     {
-       
         if( args.length == 0 )
-        {
-           view.NullCommandLineArgument();
-           System.exit(0);
+        {     
+           view.PrintError( error_messages.EROOR_PARAMETER );
+           return false;
         }
+        return true;
     }   // CheckCommandLineArguments
     
-    //  DONE 
-    public void CheckParameterPrecision( String prec )
+    
+    /** Checks if Precision is digital and if is correctly passed through
+     *  command line
+     *
+     * @param args Command Line
+     * @return If getting precision was correctly inserted
+     */
+    public boolean CheckParameterPrecision( String[] args )
     {
-        if( IsStringIntOrDouble( prec ) )
+        boolean result = false;
+        boolean stop_flag = true;
+             
+        while( stop_flag )
         {
-            integration.setPrecision(Double.parseDouble( prec ) );
-        }
-        else
-        { 
-            view.PrintError( error_messages.EROOR_PARAMETER );
-         
             try
-            {
-                view.AskForPrecision();
-                input = scanner.next();
-                integration.setPrecision( Double.parseDouble( input ) );  
+            {       
+                if( IsStringIntOrDouble( args[0] )  )
+                {
+                    integration.setPrecision(Double.parseDouble( args[0] ) );
+                }
+                else
+                {
+                    view.AskForPrecision();
+                    input = scanner.next();
+                    integration.setPrecision( Double.parseDouble( input ) );  
+                }
+                
+                result = true;
+                stop_flag = false;
             }
             catch( NumberFormatException ex )
             {
                 view.PrintError( error_messages.ERROR_INPUT_PRECISION );
-                System.exit(0);
             }
-        }     
+            
+        }   // while       
+        return result;
     }   // CheckParameterPrecision
     
-    // DONE
+    /** Method welcomes user
+     *
+     */
     public void WelcomeUser()
     {
         view.SeyHelloToUser(); 
-    }
+    }   // WelcomeUser
     
-    
-    // DONE
-    public void GetMethod()
+    /** Gets method of calculating integral from user
+     *
+     * @return If method is correct
+     */
+    public boolean GetMethod()
     {  
-       try
-       {
-        view.AskForMethod();
-        input = scanner.next();
-        method = Integer.parseInt( input );
-       }
-       catch( NumberFormatException ex )
-       {
-        view.PrintError( error_messages.ERROR_INPUT_METHOD );
-        System.exit(0);
-       }
-       
-       if( !CheckMethod( method ) )
-       {
-           view.PrintError(input);
-           System.exit(0);
-       }
-       
+        boolean result = false;
+        boolean stop_flag = true;
+             
+        while( stop_flag )
+        {
+            try
+            {
+                view.AskForMethod();
+                input = scanner.next();
+                method = Integer.parseInt( input );
+                stop_flag = false;
+            }
+            catch( NumberFormatException ex )
+            {
+             view.PrintError( error_messages.ERROR_INPUT_METHOD );
+            }
+            
+            if( !CheckMethod( method ) )
+            {
+                view.PrintError(error_messages.ERROR_INPUT_METHOD );
+                stop_flag = true;
+            }
+            else
+            {
+                result = true;
+            }
+        }
+        
+       return result;
     }   // GetMethod
     
-    // TODO POLIMORPHISMs
+    
+    /** Switches between methods using polymorphism
+     *
+     * @param meth Method to choose
+     * 
+     * @return If method was correctly chosen
+     */
     boolean CheckMethod( Integer meth )
     {
         boolean state = false;
@@ -113,7 +152,6 @@ public class Controller
             case 1:
 
                 integration = new Trapezoidal( integration );
-
                 state = true;
                 break;
 
@@ -127,52 +165,84 @@ public class Controller
         return state;     
     }   // CheckMethod
             
-    // DONE
-    public void GetBounderies()
-    {
-        try
-        {
-            view.AskLowerBound();
-            input = scanner.next();
-            integration.setLowerBound( Double.parseDouble( input ) );
 
-            view.AskUpperBound();
-            input = scanner.next();
-            integration.setUpperBound( Double.parseDouble( input ) );
-        }
-        catch( NumberFormatException ex )
+    /** Gets the boundaries form user using I/O
+     *
+     * @return If user inserted correctly boundaries
+     */
+    public boolean GetBoundaries()
+    {
+        boolean result = false;
+        boolean stop_flag = true;
+        
+        while( stop_flag )
         {
-            view.PrintError( error_messages.ERROR_INPUT_BOUNDERY );
-            System.exit(0);
-        }
+            try
+            {
+                view.AskLowerBound();
+                input = scanner.next();
+                integration.setLowerBound( Double.parseDouble( input ) );
+
+                result = true;
+                stop_flag = false;
+            }
+            catch( NumberFormatException ex )
+            {
+                view.PrintError( error_messages.ERROR_INPUT_BOUNDERY );
+            }
+        }   // while
+        
+        stop_flag = true;
+        
+        while( stop_flag )
+        {
+            try
+            {
+                view.AskUpperBound();
+                input = scanner.next();
+                integration.setUpperBound( Double.parseDouble( input ) );
+
+                result = true;
+                stop_flag = false;
+            }
+            catch( NumberFormatException ex )
+            {
+                view.PrintError( error_messages.ERROR_INPUT_BOUNDERY );
+            }
+        }   // while
+        
+        return result;
     }   // GetBounderies
     
-    
-    
+    /** Calculates definitely integral
+     *
+     */
     public void Calculate()
     {
         try
         {
-          double result = integration.CalculateIntegral( x -> {
-                                                         return Math.pow(x,2); } );
-          view.PrintResult(result);
+            // There needs to be defined function using lambda to pass it further
+            double result = integration.CalculateIntegral( x -> {
+                                                           return Math.pow(x,2); } );
+            view.PrintResult(result);
         }
         catch (NotAbstractClassException ex)
         {
            System.exit(0);
         }
-
-                                                     
-    }
+                                    
+    }   // Calculate
     
 
+    /** Checks if string is int or double convertible
+     *
+     * @param str String to check
+     * @return Result of checking using regex
+     */
     boolean IsStringIntOrDouble( String str )
     {
         return str.matches("\\d+(\\.\\d+)?");  
     }   // IsStringDouble
     
-
-  
+ 
 }   // class Controler
-
-
