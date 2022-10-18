@@ -8,7 +8,7 @@ package pl.polsl.model;
 /** Class implements Trapezoidal method of calculating integral
  * 
  * @author Karol Pisarski
- * @verson 1.0
+ * @version 1.0
  * 
  */
 public final class Trapezoidal extends Integration 

@@ -7,7 +7,7 @@ package pl.polsl.model;
 /** Class implements Midpoint method of calculating integral
  *
  * @author Karol Pisarski
- * @verson 1.0
+ * @version 1.0
  * 
  */
 public class MidPoint extends Integration 
