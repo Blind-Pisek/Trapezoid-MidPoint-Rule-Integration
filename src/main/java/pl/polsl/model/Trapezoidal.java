@@ -4,8 +4,6 @@
  */
 package pl.polsl.model;
 
-import pl.polsl.model.Integration;
-import pl.polsl.model.Function;
 
 /**
  *
@@ -19,7 +17,9 @@ public final class Trapezoidal extends Integration
         this.setUpperBound( itr.getUpperBound() );
         this.setPrecision( itr.getPrecision() );
     }
-    
+   
+    // TODO Check if the methods are implemeted in good way
+
     public double CalculateIntegral( Function function )
     {
       double h = (upper_bound - lower_bound) / precision;   // step size

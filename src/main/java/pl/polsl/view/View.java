@@ -10,6 +10,11 @@ package pl.polsl.view;
  */
 public final class View {
     
+    public void NullCommandLineArgument()
+    {
+        System.out.println("ERROR haven't found any command line arguments!!!");
+    }
+    
     public void SeyHelloToUser()
     {
         System.out.println("Welcome to programme calculating Intergrals :)");

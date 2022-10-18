@@ -13,6 +13,8 @@ import pl.polsl.model.*;
 import pl.polsl.errors.ErrorMessages;
 
 
+//  TODO  add coments in javadoc
+
 
 /**
  *
@@ -35,6 +37,15 @@ public class Controller
     int method = 0; // Flag which determines calculating method
     
 
+    public void CheckCommandLineArguments( String[] args )
+    {
+        if( args.length == 0 )
+        {
+           view.NullCommandLineArgument();
+           System.exit(0);
+        }
+    }
+    
     //  TODO 
     public void CheckParameterPrecision( String prec )
     {

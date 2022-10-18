@@ -18,7 +18,7 @@ public MidPoint( Integration itr )
         this.setPrecision( itr.getPrecision() );
     }
 
-
+// TODO Check if the methods are implemeted in good way
 public double CalculateIntegral( Function function )
 {
    double h = (upper_bound - lower_bound)/precision;
@@ -29,7 +29,7 @@ public double CalculateIntegral( Function function )
        sum += function.functionToCalculate( (lower_bound + h/ 2 ) + i * h );
    }
      
-      return sum * h;
+   return sum * h;
 }
         
         

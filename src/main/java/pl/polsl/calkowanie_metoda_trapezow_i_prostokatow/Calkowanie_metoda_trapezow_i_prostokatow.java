@@ -21,16 +21,11 @@ public class Calkowanie_metoda_trapezow_i_prostokatow
     {
        Controller controller = new Controller();
        
-       
-       // TODO EXEPTION FOR NONE ARGUMENT
-       //try
-       //{
-           controller.CheckParameterPrecision( args[0] );
-       //}
-       //catch( )
-       //{
-           //system.exit(0);
-       //}
+      
+       controller.CheckCommandLineArguments( args );
+      
+       controller.CheckParameterPrecision( args[0] );
+      
       
        controller.WelcomeUser();
        controller.GetMethod();
