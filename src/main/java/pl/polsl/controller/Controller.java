@@ -4,6 +4,8 @@
  */
 package pl.polsl.controller;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 import pl.polsl.view.*; // imports all of the classes
@@ -31,6 +33,8 @@ public class Controller
     
     int method = 0; // Flag which determines calculating method
     
+    List<String> ErrorList = new ArrayList<>(); // error list used to log 
+    
     /** Method checks if command line is not empty
      *
      * @param args Command Line
@@ -41,6 +45,7 @@ public class Controller
         if( args.length == 0 )
         {     
            view.PrintError( error_messages.EROOR_PARAMETER );
+           ErrorList.add( java.time.LocalTime.now() + error_messages.EROOR_PARAMETER );
            return false;
         }
         return true;
@@ -79,6 +84,7 @@ public class Controller
             catch( NumberFormatException ex )
             {
                 view.PrintError( error_messages.ERROR_INPUT_PRECISION );
+                ErrorList.add( java.time.LocalTime.now() + error_messages.ERROR_INPUT_PRECISION );
             }
             
         }   // while       
@@ -113,12 +119,14 @@ public class Controller
             }
             catch( NumberFormatException ex )
             {
-             view.PrintError( error_messages.ERROR_INPUT_METHOD );
+                view.PrintError( error_messages.ERROR_INPUT_METHOD );
+                ErrorList.add( java.time.LocalTime.now() + error_messages.ERROR_INPUT_METHOD );
             }
             
             if( !CheckMethod( method ) )
             {
                 view.PrintError(error_messages.ERROR_INPUT_METHOD );
+                ErrorList.add( java.time.LocalTime.now() + error_messages.ERROR_INPUT_METHOD );
                 stop_flag = true;
             }
             else
@@ -137,7 +145,7 @@ public class Controller
      * 
      * @return If method was correctly chosen
      */
-    boolean CheckMethod( Integer meth )
+    private boolean CheckMethod( Integer meth )
     {
         boolean state = false;
         method = meth;
@@ -189,6 +197,7 @@ public class Controller
             catch( NumberFormatException ex )
             {
                 view.PrintError( error_messages.ERROR_INPUT_BOUNDERY );
+                ErrorList.add( java.time.LocalTime.now() + error_messages.ERROR_INPUT_BOUNDERY );
             }
         }   // while
         
@@ -208,6 +217,7 @@ public class Controller
             catch( NumberFormatException ex )
             {
                 view.PrintError( error_messages.ERROR_INPUT_BOUNDERY );
+                ErrorList.add( java.time.LocalTime.now() + error_messages.ERROR_INPUT_BOUNDERY );
             }
         }   // while
         
@@ -239,7 +249,7 @@ public class Controller
      * @param str String to check
      * @return Result of checking using regex
      */
-    boolean IsStringIntOrDouble( String str )
+    private boolean IsStringIntOrDouble( String str )
     {
         return str.matches("\\d+(\\.\\d+)?");  
     }   // IsStringDouble
