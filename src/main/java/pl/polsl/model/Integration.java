@@ -54,6 +54,15 @@ public class Integration
      */
     public double getPrecision() { return precision; }  
 
+    // TODO ADD COMMENT
+    //public Integration(double l_b, double u_b, double pr)
+    //{
+     //   lower_bound = l_b;
+      //  upper_bound = u_b;
+      //  precision = pr;
+   // }
+    
+    
     /** Calculates integral with specified method
      *  in base class It throws exception to avoid
      *  calculating integral without specified method

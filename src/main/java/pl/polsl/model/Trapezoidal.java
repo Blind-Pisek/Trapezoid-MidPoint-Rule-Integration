@@ -8,11 +8,19 @@ package pl.polsl.model;
 /** Class implements Trapezoidal method of calculating integral
  * 
  * @author Karol Pisarski
- * @version 1.0
+ * @version 1.1
  * 
  */
 public final class Trapezoidal extends Integration 
 {
+    
+    public Trapezoidal()
+    {
+        lower_bound = 0;
+        upper_bound = 0;
+        precision= 0;         
+    }
+    
     /** Constructor that copies private fields from base class
      *
      * @param itr Base class object

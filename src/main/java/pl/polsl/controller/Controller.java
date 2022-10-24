@@ -16,7 +16,7 @@ import pl.polsl.errors.ErrorMessages;
 /** Design pattern MVC controller class
  *
  * @author Karol Pisarski
- * @version 1.0
+ * @version 1.1
  * 
  */
 public class Controller 

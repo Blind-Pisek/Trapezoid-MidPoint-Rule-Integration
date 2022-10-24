@@ -4,10 +4,13 @@
  */
 package pl.polsl.view;
 
+import java.util.List;
+import java.util.stream.Stream;
+
 /** Design pattern MVC view class
  *
  * @author Karol Pisarski
- * @version 1.0
+ * @version 1.1
  */
 public final class View 
 {
@@ -65,6 +68,16 @@ public final class View
     {
         System.out.println("Result of calculation: " + res );
     }
-    
+       
+    /** Method prints all of the errors in error list
+     *
+     * @param str_list List of errors to be printed
+     */
+    public void PrintErrorList( List<String> str_list )
+    {
+        Stream<List<String>> list_str_stream = Stream.of(str_list );
+   
+        list_str_stream.forEach( x -> System.out.println( x ) );
+    }   // PrintErrorList
     
 }   // class View
