@@ -1,5 +1,5 @@
 
-package pl.polsl.calkowanie_metoda_trapezow_i_prostokatow;
+package pl.polsl.CalkowanieMetodaTrapezowIProstokatow;
 
 import pl.polsl.controller.Controller;
 
@@ -12,7 +12,7 @@ import pl.polsl.controller.Controller;
  * E-mail: karopis422@student.polsl.pl
  * 
  */
-public class Calkowanie_metoda_trapezow_i_prostokatow 
+public class CalkowanieMetodaTrapezowIProstokatow 
 {
     static Controller controller;   // Programme logic
     
