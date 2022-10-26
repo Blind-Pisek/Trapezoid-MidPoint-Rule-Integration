@@ -40,16 +40,16 @@ public class Controller
      * @param args Command Line
      * @return If is not empty
      */
-    public boolean CheckCommandLineArguments( String[] args )
+    public boolean checkCommandLineArguments( String[] args )
     {
         if( args.length == 0 )
         {     
-           view.PrintError( error_messages.EROOR_PARAMETER );
+           view.printError( error_messages.EROOR_PARAMETER );
            ErrorList.add( java.time.LocalTime.now() + error_messages.EROOR_PARAMETER );
            return false;
         }
         return true;
-    }   // CheckCommandLineArguments
+    }   // checkCommandLineArguments
     
     
     /** Checks if Precision is digital and if is correctly passed through
@@ -58,7 +58,7 @@ public class Controller
      * @param args Command Line
      * @return If getting precision was correctly inserted
      */
-    public boolean CheckParameterPrecision( String[] args )
+    public boolean checkParameterPrecision( String[] args )
     {
         boolean result = false;
         boolean stop_flag = true;
@@ -67,13 +67,13 @@ public class Controller
         {
             try
             {       
-                if( IsStringIntOrDouble( args[0] )  )
+                if( isStringIntOrDouble( args[0] )  )
                 {
                     integration.setPrecision(Double.parseDouble( args[0] ) );
                 }
                 else
                 {
-                    view.AskForPrecision();
+                    view.askForPrecision();
                     input = scanner.next();
                     integration.setPrecision( Double.parseDouble( input ) );  
                 }
@@ -83,27 +83,27 @@ public class Controller
             }
             catch( NumberFormatException ex )
             {
-                view.PrintError( error_messages.ERROR_INPUT_PRECISION );
+                view.printError( error_messages.ERROR_INPUT_PRECISION );
                 ErrorList.add( java.time.LocalTime.now() + error_messages.ERROR_INPUT_PRECISION );
             }
             
         }   // while       
         return result;
-    }   // CheckParameterPrecision
+    }   // checkParameterPrecision
     
     /** Method welcomes user
      *
      */
-    public void WelcomeUser()
+    public void welcomeUser()
     {
-        view.SeyHelloToUser(); 
-    }   // WelcomeUser
+        view.sayHelloToUser(); 
+    }   // welcomeUser
     
     /** Gets method of calculating integral from user
      *
      * @return If method is correct
      */
-    public boolean GetMethod()
+    public boolean getMethod()
     {  
         boolean result = false;
         boolean stop_flag = true;
@@ -112,20 +112,20 @@ public class Controller
         {
             try
             {
-                view.AskForMethod();
+                view.askForMethod();
                 input = scanner.next();
                 method = Integer.parseInt( input );
                 stop_flag = false;
             }
             catch( NumberFormatException ex )
             {
-                view.PrintError( error_messages.ERROR_INPUT_METHOD );
+                view.printError( error_messages.ERROR_INPUT_METHOD );
                 ErrorList.add( java.time.LocalTime.now() + error_messages.ERROR_INPUT_METHOD );
             }
             
-            if( !CheckMethod( method ) )
+            if( !checkMethod( method ) )
             {
-                view.PrintError(error_messages.ERROR_INPUT_METHOD );
+                view.printError(error_messages.ERROR_INPUT_METHOD );
                 ErrorList.add( java.time.LocalTime.now() + error_messages.ERROR_INPUT_METHOD );
                 stop_flag = true;
             }
@@ -136,7 +136,7 @@ public class Controller
         }
         
        return result;
-    }   // GetMethod
+    }   // getMethod
     
     
     /** Switches between methods using polymorphism
@@ -145,7 +145,7 @@ public class Controller
      * 
      * @return If method was correctly chosen
      */
-    private boolean CheckMethod( Integer meth )
+    private boolean checkMethod( Integer meth )
     {
         boolean state = false;
         method = meth;
@@ -171,14 +171,14 @@ public class Controller
         } // switch
             
         return state;     
-    }   // CheckMethod
+    }   // checkMethod
             
 
     /** Gets the boundaries form user using I/O
      *
      * @return If user inserted correctly boundaries
      */
-    public boolean GetBoundaries()
+    public boolean getBoundaries()
     {
         boolean result = false;
         boolean stop_flag = true;
@@ -187,7 +187,7 @@ public class Controller
         {
             try
             {
-                view.AskLowerBound();
+                view.askLowerBound();
                 input = scanner.next();
                 integration.setLowerBound( Double.parseDouble( input ) );
 
@@ -196,7 +196,7 @@ public class Controller
             }
             catch( NumberFormatException ex )
             {
-                view.PrintError( error_messages.ERROR_INPUT_BOUNDERY );
+                view.printError( error_messages.ERROR_INPUT_BOUNDERY );
                 ErrorList.add( java.time.LocalTime.now() + error_messages.ERROR_INPUT_BOUNDERY );
             }
         }   // while
@@ -207,7 +207,7 @@ public class Controller
         {
             try
             {
-                view.AskUpperBound();
+                view.askUpperBound();
                 input = scanner.next();
                 integration.setUpperBound( Double.parseDouble( input ) );
 
@@ -216,7 +216,7 @@ public class Controller
             }
             catch( NumberFormatException ex )
             {
-                view.PrintError( error_messages.ERROR_INPUT_BOUNDERY );
+                view.printError( error_messages.ERROR_INPUT_BOUNDERY );
                 ErrorList.add( java.time.LocalTime.now() + error_messages.ERROR_INPUT_BOUNDERY );
             }
         }   // while
@@ -227,21 +227,21 @@ public class Controller
     /** Calculates definitely integral
      *
      */
-    public void Calculate()
+    public void calcIntegral()
     {
         try
         {
             // There needs to be defined function using lambda to pass it further
-            double result = integration.CalculateIntegral( x -> {
+            double result = integration.calculateIntegral( x -> {
                                                            return Math.pow(x,2); } );
-            view.PrintResult(result);
+            view.printResult(result);
         }
         catch (NotAbstractClassException ex)
         {
            System.exit(0);
         }
                                     
-    }   // Calculate
+    }   // calcIntegral
     
 
     /** Checks if string is int or double convertible
@@ -249,7 +249,7 @@ public class Controller
      * @param str String to check
      * @return Result of checking using regex
      */
-    private boolean IsStringIntOrDouble( String str )
+    private boolean isStringIntOrDouble( String str )
     {
         return str.matches("\\d+(\\.\\d+)?");  
     }   // IsStringDouble

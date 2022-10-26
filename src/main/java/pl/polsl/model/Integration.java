@@ -9,7 +9,7 @@ import pl.polsl.errors.ErrorMessages;
 /** Class implements base class of calculating integral
  * 
  * @author Karol Pisarski
- * @version 1.0
+ * @version 1.1
  * 
  */
 public class Integration 
@@ -71,9 +71,9 @@ public class Integration
      * @return Result of integration
      * @throws NotAbstractClassException 
      */
-    public double CalculateIntegral ( Function function ) throws NotAbstractClassException
+    public double calculateIntegral ( Function function ) throws NotAbstractClassException
     {
         throw new NotAbstractClassException(ErrorMessages.ERROR_NOT_ABSTRACT_CLASS );
-    }   // CalculateIntegral
+    }   // calculateIntegral
 
 }

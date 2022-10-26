@@ -4,15 +4,10 @@
  */
 package pl.polsl.model;
 
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
-import org.junit.jupiter.params.provider.ValueSource;
 
 /**
  *
@@ -22,41 +17,64 @@ import org.junit.jupiter.params.provider.ValueSource;
  */
 public class TrapezoidalTest {
     
-    private Trapezoidal integral;
-    public TrapezoidalTest() {
-    }
-    
-    /**
+    private Trapezoidal Integral;
+
+    /** Creates Trapezoidal object with 0 values 
      *
      */
     @BeforeEach
     public void setUpClass() 
     {    
-        integral = new Trapezoidal();
+        Integral = new Trapezoidal();
     }  
     
+    /** Test calculates different values of specified integral
+     *
+     */
     @Test
     public void testCalculateIntegral()
     {
-        integral = new Trapezoidal();
-        integral.setLowerBound(100);
-        integral.setUpperBound(200);
-        integral.setPrecision(1000);
-        integral.CalculateIntegral( x -> {
+        Integral = new Trapezoidal();
+        Integral.setLowerBound(100);
+        Integral.setUpperBound(200);
+        Integral.setPrecision(1000);
+        Integral.calculateIntegral( x -> {
                                            return Math.pow(x,2); });
         
-        
-    }
+        Integral.setLowerBound(145);
+        Integral.setUpperBound(12);
+        Integral.setPrecision(10000);
+        Integral.calculateIntegral( x -> {
+                                           return Math.asin(x); });
+  
+        Integral.setLowerBound(-100);
+        Integral.setUpperBound(20);
+        Integral.setPrecision(10000);
+        Integral.calculateIntegral( x -> {
+                                           return Math.sin(Math.cos(x)); });
+  
+        Integral.setLowerBound(10);
+        Integral.setUpperBound(-2);
+        Integral.setPrecision(1000);
+        Integral.calculateIntegral( x -> {
+                                           return Math.atan2(x,2); });
+  
+        Integral.setLowerBound(21);
+        Integral.setUpperBound(37);
+        Integral.setPrecision(2137);
+        Integral.calculateIntegral( x -> {
+                                           return Math.log(x); });
+  
+    }   // testCalculateIntegral
     
     @ParameterizedTest
-    @CsvSource({"0,2,100","2,30,10000","52,132,1000"})
-    void palindromes(double lb, double ub, double pre ) {
-        integral.setLowerBound(lb);
-        integral.setUpperBound(ub);
-        integral.setPrecision(pre);
-        integral.CalculateIntegral( x -> {
-                                           return Math.pow(x,2); });
-    }
-
+    @CsvSource( {"0,2,100", "2,30,10000", "52,132,1000"} )
+    void prametrisedTest( double lb, double ub, double pre ) {
+        Integral.setLowerBound(lb);
+        Integral.setUpperBound(ub);
+        Integral.setPrecision(pre);
+        Integral.calculateIntegral( x -> {
+                                           return Math.pow(x,2) * Math.acos(x); });
+    }   // prametrisedTest
     
 }

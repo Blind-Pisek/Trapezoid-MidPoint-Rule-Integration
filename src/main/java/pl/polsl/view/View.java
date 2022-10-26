@@ -18,7 +18,7 @@ public final class View
      *
      * @param val Message to print
      */
-    public void PrintError( String val ) 
+    public void printError( String val ) 
     {
         System.out.println( val );
     }
@@ -26,7 +26,7 @@ public final class View
     /** Welcomes user
      *
      */
-    public void SeyHelloToUser()
+    public void sayHelloToUser()
     {
         System.out.println("Welcome to programme calculating Intergrals :)");
     }
@@ -34,7 +34,7 @@ public final class View
     /** Ask user for method to calculate integral
      *
      */
-    public void AskForMethod()
+    public void askForMethod()
     {
         System.out.println("Type 0 to use MidPoint method or 1 to use Trapezoidal method: )");
     }
@@ -42,21 +42,21 @@ public final class View
     /** Ask user for lower boundary used to calculate integral 
      *
      */
-    public void AskLowerBound(){
+    public void askLowerBound(){
         System.out.println("Tell me the lower bound of integral: ");
     }
     
     /** Ask user for upper boundary used to calculate integral 
      *
      */
-    public void AskUpperBound(){
+    public void askUpperBound(){
         System.out.println("Tell me the upper bound of integral: ");
     }
     
     /** Ask user for precision used to calculate integral 
      *
      */
-    public void AskForPrecision(){
+    public void askForPrecision(){
         System.out.println("Tell me the precision of calculating integral: ");
     }
     
@@ -64,7 +64,7 @@ public final class View
      *
      * @param res Result to show
      */
-    public void PrintResult( double res )
+    public void printResult( double res )
     {
         System.out.println("Result of calculation: " + res );
     }
@@ -73,11 +73,11 @@ public final class View
      *
      * @param str_list List of errors to be printed
      */
-    public void PrintErrorList( List<String> str_list )
+    public void printErrorList( List<String> str_list )
     {
         Stream<List<String>> list_str_stream = Stream.of(str_list );
    
         list_str_stream.forEach( x -> System.out.println( x ) );
-    }   // PrintErrorList
+    }   // printErrorList
     
 }   // class View

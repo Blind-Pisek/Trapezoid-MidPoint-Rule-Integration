@@ -7,17 +7,15 @@ import pl.polsl.controller.Controller;
 /**
  *
  * @author Karol Pisarski
- * @version 1.0
+ * @version 1.1
  * 
  * E-mail: karopis422@student.polsl.pl
  * 
  */
 public class CalkowanieMetodaTrapezowIProstokatow 
 {
-    static Controller controller;   // Programme logic
-    
-    static boolean app_parapeters = false;
-    
+    static Controller Controller;   // Programme logic
+        
     /** Main function
      * 
      * @param args programme arguments
@@ -25,15 +23,15 @@ public class CalkowanieMetodaTrapezowIProstokatow
      */
     public static void main( String[] args ) 
     {
-        controller = new Controller();
+        Controller = new Controller();
 
-        if( controller.CheckCommandLineArguments( args ) &&
-            controller.CheckParameterPrecision( args ) )
+        if( Controller.checkCommandLineArguments( args ) &&
+            Controller.checkParameterPrecision( args ) )
         {
-            controller.WelcomeUser();
-            controller.GetMethod();
-            controller.GetBoundaries();
-            controller.Calculate();
+            Controller.welcomeUser();
+            Controller.getMethod();
+            Controller.getBoundaries();
+            Controller.calcIntegral();
         }   // if
   
     }   // main

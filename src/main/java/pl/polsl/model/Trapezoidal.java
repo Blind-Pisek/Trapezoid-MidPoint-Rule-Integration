@@ -38,7 +38,7 @@ public final class Trapezoidal extends Integration
      * @return Result of integration
      */
     @Override
-    public double CalculateIntegral( Function function )
+    public double calculateIntegral( Function function )
     {
       double h = (upper_bound - lower_bound) / precision;   // step size
       
@@ -52,7 +52,7 @@ public final class Trapezoidal extends Integration
       }
 
       return sum * h;
-   }    // CalculateIntegral
+   }    // calculateIntegral
           
 }   // class Trapezoidal
     
