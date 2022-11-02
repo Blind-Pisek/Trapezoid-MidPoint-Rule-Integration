@@ -8,7 +8,7 @@ package pl.polsl.errors;
  *  it is similar to #define used in C/C++
  *
  * @author Karol Pisarski
- * @version 1.0
+ * @version 1.1
  * 
  */
 public class ErrorMessages 
@@ -22,5 +22,7 @@ public class ErrorMessages
     public static final String ERROR_INPUT_BOUNDERY = "Introduced wrong boundary!!!";
 
     public static final String ERROR_NOT_ABSTRACT_CLASS = "Not abstract class implemented!!!";
+    
+    public static final String ERRO_NOT_SELECTED_METHOD = "Haven't selected any method";
 
 }

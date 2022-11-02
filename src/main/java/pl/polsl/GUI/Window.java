@@ -4,6 +4,8 @@
  */
 package pl.polsl.GUI;
 
+import javax.swing.table.DefaultTableModel;
+import pl.polsl.errors.ErrorMessages;
 import pl.polsl.model.Integration;
 import pl.polsl.model.MidPoint;
 import pl.polsl.model.NotAbstractClassException;
@@ -19,6 +21,8 @@ public class Window extends javax.swing.JFrame {
     private Integration integr = new Integration();
     
     private Integration calculatableIntegr;
+    
+    private Object[][] OperationHistory;
     
     /**
      * Creates new form Window
@@ -50,6 +54,9 @@ public class Window extends javax.swing.JFrame {
         jLabelLowerBoundary = new javax.swing.JLabel();
         jLabelUpperBoundary = new javax.swing.JLabel();
         jLabelPrecision = new javax.swing.JLabel();
+        jScrollPaneHis = new javax.swing.JScrollPane();
+        jTableOperHis = new javax.swing.JTable();
+        jLabelOperHis = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -107,6 +114,18 @@ public class Window extends javax.swing.JFrame {
 
         jLabelPrecision.setText("Precision");
 
+        jTableOperHis.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Lower Boundary", "Upper Boundary", "Precision", "Result"
+            }
+        ));
+        jScrollPaneHis.setViewportView(jTableOperHis);
+
+        jLabelOperHis.setText("Operation History");
+
         javax.swing.GroupLayout jPanelMainLayout = new javax.swing.GroupLayout(jPanelMain);
         jPanelMain.setLayout(jPanelMainLayout);
         jPanelMainLayout.setHorizontalGroup(
@@ -127,21 +146,29 @@ public class Window extends javax.swing.JFrame {
                                 .addComponent(jRadioButtonMidP)
                                 .addGap(124, 124, 124)
                                 .addComponent(jToggleButtonCalculate)
-                                .addGap(0, 147, Short.MAX_VALUE)))))
+                                .addGap(0, 0, Short.MAX_VALUE)))))
                 .addGap(36, 36, 36)
                 .addComponent(jLabelResult)
                 .addGap(94, 94, 94))
             .addGroup(jPanelMainLayout.createSequentialGroup()
-                .addGap(78, 78, 78)
                 .addGroup(jPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabelUpperBoundary)
-                    .addComponent(jLabelPrecision)
-                    .addComponent(jLabelLowerBoundary)
-                    .addGroup(jPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(jTextFieldPrec, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jTextFieldLB, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jTextFieldUB, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanelMainLayout.createSequentialGroup()
+                        .addGap(78, 78, 78)
+                        .addGroup(jPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabelUpperBoundary)
+                            .addComponent(jLabelPrecision)
+                            .addComponent(jLabelLowerBoundary)
+                            .addGroup(jPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(jTextFieldPrec, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jTextFieldLB, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jTextFieldUB, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(jPanelMainLayout.createSequentialGroup()
+                        .addGap(53, 53, 53)
+                        .addComponent(jScrollPaneHis, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanelMainLayout.createSequentialGroup()
+                        .addGap(249, 249, 249)
+                        .addComponent(jLabelOperHis)))
+                .addContainerGap(66, Short.MAX_VALUE))
         );
         jPanelMainLayout.setVerticalGroup(
             jPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -158,7 +185,7 @@ public class Window extends javax.swing.JFrame {
                 .addComponent(jLabelPrecision)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jTextFieldPrec, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 110, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabelChose)
                 .addGap(34, 34, 34)
                 .addGroup(jPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -169,24 +196,27 @@ public class Window extends javax.swing.JFrame {
                 .addGroup(jPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jToggleButtonCalculate)
                     .addComponent(jRadioButtonMidP))
-                .addGap(50, 50, 50))
+                .addGap(18, 18, 18)
+                .addComponent(jLabelOperHis)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPaneHis, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(39, 39, 39))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(111, Short.MAX_VALUE)
-                .addComponent(jPanelMain, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(59, 59, 59))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(47, 47, 47)
+                .addComponent(jPanelMain, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(43, 43, 43)
+                .addGap(18, 18, 18)
                 .addComponent(jPanelMain, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(52, Short.MAX_VALUE))
+                .addContainerGap(211, Short.MAX_VALUE))
         );
 
         pack();
@@ -201,23 +231,29 @@ public class Window extends javax.swing.JFrame {
 
     private void jToggleButtonCalculateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButtonCalculateActionPerformed
         // TODO add your handling code here:
-        //Trapezoidal integ = new Trapezoidal(integr);
-        //integ.setLowerBound(2);
-        //integ.setUpperBound(4);
-        //integ.setPrecision(10000);
         if(jRadioButtonTrap.isSelected() || jRadioButtonMidP.isSelected())
         {
             try
             {
-                jLabelResult.setText( String.valueOf(calculatableIntegr.calculateIntegral( x -> { return Math.pow(x,2); } ) ) );
+                String res = String.valueOf(calculatableIntegr.calculateIntegral( x -> { return Math.pow(x,2); } ) );
+                jLabelResult.setText( res );
 
+                DefaultTableModel model = (DefaultTableModel) jTableOperHis.getModel();
+                model.addRow(new Object[]{ calculatableIntegr.getLowerBound(), 
+                                           calculatableIntegr.getUpperBound(),
+                                           calculatableIntegr.getPrecision(),
+                                           res });
+                
             } 
             catch(NotAbstractClassException ex)
             {
                 
             }    
         }
-       //jLabelResult.setText(String.valueOf(integr.getLowerBound()) );
+        else
+        {
+            jLabelResult.setText( ErrorMessages.ERRO_NOT_SELECTED_METHOD );
+        }
     }//GEN-LAST:event_jToggleButtonCalculateActionPerformed
 
     private void jRadioButtonTrapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonTrapActionPerformed
@@ -280,6 +316,7 @@ public class Window extends javax.swing.JFrame {
     private javax.swing.ButtonGroup buttonGroupMethod;
     private javax.swing.JLabel jLabelChose;
     private javax.swing.JLabel jLabelLowerBoundary;
+    private javax.swing.JLabel jLabelOperHis;
     private javax.swing.JLabel jLabelPrecision;
     private javax.swing.JLabel jLabelRes;
     private javax.swing.JLabel jLabelResult;
@@ -287,6 +324,8 @@ public class Window extends javax.swing.JFrame {
     private javax.swing.JPanel jPanelMain;
     private javax.swing.JRadioButton jRadioButtonMidP;
     private javax.swing.JRadioButton jRadioButtonTrap;
+    private javax.swing.JScrollPane jScrollPaneHis;
+    private javax.swing.JTable jTableOperHis;
     private javax.swing.JTextField jTextFieldLB;
     private javax.swing.JTextField jTextFieldPrec;
     private javax.swing.JTextField jTextFieldUB;
