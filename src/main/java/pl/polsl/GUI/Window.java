@@ -21,9 +21,7 @@ public class Window extends javax.swing.JFrame {
     private Integration integr = new Integration();
     
     private Integration calculatableIntegr;
-    
-    private Object[][] OperationHistory;
-    
+        
     /**
      * Creates new form Window
      */
@@ -214,9 +212,8 @@ public class Window extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(18, 18, 18)
-                .addComponent(jPanelMain, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(211, Short.MAX_VALUE))
+                .addContainerGap(18, Short.MAX_VALUE)
+                .addComponent(jPanelMain, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
